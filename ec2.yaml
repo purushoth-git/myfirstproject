@@ -1,15 +1,29 @@
-resources: 
-    MyEC2Instance: 
+ resource:       
+   MyEC2Instance:
     Type: AWS::EC2::Instance
-    Properties: 
+    Properties:
       ImageId: "ami-79fd7eee"
       KeyName: "testkey"
-      BlockDeviceMappings: 
+      BlockDeviceMappings:
       - DeviceName: "/dev/sdm"
-        Ebs: 
+        Ebs:
           VolumeType: "io1"
           Iops: "222"
           DeleteOnTermination: "false"
           VolumeSize: "20"
+      - DeviceName: "/dev/sdk"
+        NoDevice: {}
+backupInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: "ami-79fd7eee"
+      KeyName: "testkey"
+      BlockDeviceMappings:
+      - DeviceName: "/dev/sdm"
+        Ebs:
+          VolumeType: "io1"
+          Iops: "222"
+          DeleteOnTermination: "false"
+          VolumeSize: "31"
       - DeviceName: "/dev/sdk"
         NoDevice: {}
